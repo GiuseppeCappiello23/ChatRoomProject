@@ -1,7 +1,6 @@
 <script>
 	import Navbar from "../../lib/components/Navbar.svelte";
 	import RegisterForm from "../../lib/components/RegisterForm.svelte";
-    import ErrorAlert from "../../lib/components/ErrorAlert.svelte";
 
      /** @type {import('./$types').ActionData} */
     export let form
