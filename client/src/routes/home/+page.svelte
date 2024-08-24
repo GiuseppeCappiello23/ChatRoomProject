@@ -1,6 +1,8 @@
 <script>
+    import NavbarLogged from '$lib/components/NavbarLogged.svelte';
+
     export let data;
 
 </script>
 
-Ciao {data.username}
+<NavbarLogged user={data.user}/>

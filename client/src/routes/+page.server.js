@@ -14,6 +14,7 @@ export const actions = {
             await locals.pb.collection("users").authWithPassword(body.email, body.password)
             // console.log(locals.pb.authStore.model)
         } catch (error) {
+            console.log("Error : ", error)
             return fail(400, { notVerified: true })
         }
     }
