@@ -16,7 +16,7 @@
             <PasswordInput></PasswordInput>			
             <div>
                 <button class="btn btn-primary w-full">Login</button>
-                Non sei ancora registrato? <a href="/" class="text-teal-600 underline">Registrati</a>
+                Non sei ancora registrato? <a href="/register" class="text-teal-600 underline">Registrati</a>
             </div>
 
 		</div>
