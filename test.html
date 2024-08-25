@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>WebSocket</title>
+</head>
+
+<body>
+    <input type="text" name="mes" id="mes"> <button id="invia">invia</button>
+  <p id="output"></p>
+
+  <script>
+    var loc = window.location;
+    var nome = prompt("inserisci il tuo nome")
+    var room = prompt("inserisci nome stanza")
+    var uri = `ws://localhost:3000/ws?id=${nome}&rooms=${room}`;
+
+    ws = new WebSocket(uri)
+
+    ws.onopen = function() {
+      console.log('Connected')
+    }
+
+    ws.onmessage = function(evt) {
+      var out = document.getElementById('output');
+      out.innerHTML += evt.data + '<br>';
+    }
+
+    document.getElementById("invia").onclick = () => {
+        let messaggio = document.getElementById("mes").value
+        document.getElementById("mes").value = ""
+
+        ws.send(messaggio)
+    }
+    
+  </script>
+</body>
+
+</html>

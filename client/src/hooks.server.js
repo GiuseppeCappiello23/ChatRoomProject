@@ -3,11 +3,12 @@ import PocketBase from "pocketbase"
 
 env.config()
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD
+const ENV = process.env.ENV
+const uri = ENV == "container" ? "http://pocketbase:8090" : "http://localhost:8090"
 
 export const handle = async ({ event, resolve }) => {
-    event.locals.pb = new PocketBase("http://localhost:8090")
+
+    event.locals.pb = new PocketBase(uri)
     event.locals.pb.authStore.loadFromCookie(event.request.headers.get("cookie") || '')
 
     if(event.locals.pb.authStore.isValid) {

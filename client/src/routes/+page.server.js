@@ -17,5 +17,7 @@ export const actions = {
             console.log("Error : ", error)
             return fail(400, { notVerified: true })
         }
+
+        redirect(303, "/")
     }
 }
