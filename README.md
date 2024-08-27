@@ -4,9 +4,9 @@ before running
     #docker compose up -d
 ```
 
-make sure to create a .env file in client/src and set
+make sure to create a .env file in /client and set
 
 ```
-    #/client/src/.env
+    #/client/.env
     ENV=container
 ```
