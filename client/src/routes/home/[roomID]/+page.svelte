@@ -18,14 +18,14 @@
 	$: messagesList = [];
 
 	let ws;
-	let height;
+	$: height = 0
 
 	// function handleResize() {
 	// 	height = document.getElementById("messages").scrollHeight
 	// }
 
 	onMount(() => {
-		$: height = document.getElementById("messages").scrollHeight
+		height = document.getElementById("messages").scrollHeight
 		
 		// window.onresize = handleResize
 		ws = new WebSocket(uri);
