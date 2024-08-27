@@ -1,19 +1,17 @@
 services:
-  # backend:
-  #   build: 
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8080:8080"
-  #   depends_on:
-  #     - mongo
+  backend:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
 
   client:
     build: 
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "80:5173"
+      - "80:4173"
     depends_on:
       - pocketbase
 

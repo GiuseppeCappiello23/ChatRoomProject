@@ -1,24 +1,5 @@
 <!-- <script>
-    export let data
-    let uri = `ws://localhost:3000/ws?id=${data.user.username}&rooms=${room}`;
-
-    ws = new WebSocket(uri)
-
-    ws.onopen = function() {
-      console.log('Connected')
-    }
-
-    ws.onmessage = function(evt) {
-      var out = document.getElementById('output');
-      out.innerHTML += evt.data + '<br>';
-    }
-
-    document.getElementById("invia").onclick = () => {
-        let messaggio = document.getElementById("mes").value
-        document.getElementById("mes").value = ""
-
-        ws.send(messaggio)
-    }
+    
 </script>
 --> 
 <script>
@@ -34,8 +15,10 @@
         event.preventDefault();
         const formObj = Object.fromEntries(new FormData(event.target))
 
-        roomsList.push(formObj)
-        roomsList = roomsList
+        if(formObj.roomID.trim() != "" && formObj.roomName.trim() != "") {
+            roomsList.push(formObj)
+            roomsList = roomsList
+        }
     }
 </script>
 

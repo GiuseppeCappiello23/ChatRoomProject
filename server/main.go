@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -66,7 +67,18 @@ func wsHandler(c echo.Context) error {
 
 		fmt.Printf("messaggio ricevuto da id %s : %s\n", id, msg)
 
-		server.BroadCastToRoom(room, ("id:" + id + " message:" + string(msg)))
+		data := map[string]interface{}{
+			"sender": id,
+			"text":   string(msg),
+		}
+
+		jsonMessage, err := json.Marshal(data)
+		if err != nil {
+			fmt.Println("Errore nel parse in json", err)
+			break
+		}
+
+		server.BroadCastToRoom(room, jsonMessage)
 	}
 
 	return nil

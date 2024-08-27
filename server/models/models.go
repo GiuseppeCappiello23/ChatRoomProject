@@ -52,14 +52,14 @@ func (s *Server) RemoveClientFromRoom(client *Client) {
 	client.Rooms = make(map[string]*Room)
 }
 
-func (s *Server) BroadCastToRoom(roomName string, message string) {
+func (s *Server) BroadCastToRoom(roomName string, message []byte) {
 	s.Lock()
 	room, exist := s.Rooms[roomName]
 	s.Unlock()
 
 	if exist {
 		for _, client := range room.Clients {
-			err := client.Conn.WriteMessage(websocket.TextMessage, []byte(message))
+			err := client.Conn.WriteMessage(websocket.TextMessage, message)
 			if err != nil {
 				fmt.Println("problema nell'invio del messaggio")
 				s.RemoveClientFromRoom(client)
