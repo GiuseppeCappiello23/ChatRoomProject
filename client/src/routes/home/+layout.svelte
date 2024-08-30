@@ -7,22 +7,36 @@
     import ModalAddRoom from '../../lib/components/ModalAddRoom.svelte';
     import RoomCard from '../../lib/components/RoomCard.svelte';
     
+    
     export let data;
+    export let form;
+    $: share = ""
 
-    $: roomsList = []
+    function updateList(list, newElements) {
+        newElements.forEach(({ id, roomName }) => {
+            list.push({ id, roomName })
+        })
+    }
+
+    console.log(data);
+    $: roomsList = data.user.rooms.items
+    
+    // updateList(roomsList, )
+    // roomsList = roomsList
 
     const addRoom = (event) => {
         event.preventDefault();
         const formObj = Object.fromEntries(new FormData(event.target))
 
-        if(formObj.roomID.trim() != "" && formObj.roomName.trim() != "") {
+        if(formObj.roomName.trim() != "") {
             roomsList.push(formObj)
             roomsList = roomsList
         }
     }
 </script>
 
-<ModalAddRoom addFunction={addRoom}/>
+<ModalAddRoom addFunction={addRoom} form={form}/>
+
 <main class="flex flex-col h-screen">
 	<NavbarLogged user={data.user}/>
 
@@ -33,7 +47,7 @@
                     {#each roomsList as room}
                         <RoomCard
                             roomName = {room.roomName}
-                            roomID = {room.roomID}
+                            roomID = {room.id}
                         />
                     {/each}
                 </div>

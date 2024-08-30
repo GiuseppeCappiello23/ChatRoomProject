@@ -11,3 +11,4 @@ export const load = ({ request, locals }) => {
 
     redirect(303, "/")
 }
+

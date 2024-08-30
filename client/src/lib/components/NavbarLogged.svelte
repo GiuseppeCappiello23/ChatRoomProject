@@ -9,7 +9,7 @@
     <button class="btn btn-ghost text-xl">ChatRoom</button>
     <div class="flex gap-6">
         <ThemeController/>
-        <Avatar path={user.avatar}></Avatar>
+        <Avatar/>
     </div>
     
 </div>

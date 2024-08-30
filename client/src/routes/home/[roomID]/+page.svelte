@@ -12,21 +12,20 @@
     // if(data.env == "container") domain = "server"
 
 	let uri = `ws://${domain}:3000/ws?id=${data.user.username}&rooms=${roomID}`;
-	console.log("uri :", uri)
+	// console.log("uri :", uri)
     let text = ""
-
+	$: height = ""
 	$: messagesList = [];
-
+	
 	let ws;
-	$: height = 0
 
 	// function handleResize() {
 	// 	height = document.getElementById("messages").scrollHeight
 	// }
 
 	onMount(() => {
-		height = document.getElementById("messages").scrollHeight
-		
+		let h = document.getElementById("messages").scrollHeight
+		height = `max-height: ${h}px`;
 		// window.onresize = handleResize
 		ws = new WebSocket(uri);
 
@@ -36,7 +35,7 @@
 
 		ws.onmessage = function (event) {
             let mes = JSON.parse(event.data)
-			console.log(mes);
+			// console.log(mes);
             messagesList.push(mes)
             messagesList = messagesList
 		};
@@ -55,7 +54,7 @@
 </script>
 
 <main class="w-full h-full flex flex-col">
-	<div class="flex-1 overflow-y-scroll" style="max-height: {height}px;" id="messages">
+	<div class="flex-1 overflow-y-scroll" style={height} id="messages">
 		{#each messagesList as message}
 			{#if message.sender == data.user.username}
 				<ChatBubbleRight username={message.sender} time="12:45" text={message.text} />

@@ -32,7 +32,6 @@ export const actions = {
             console.log("record : ", JSON.stringify(record))
 
         } catch (error) {
-            console.log("----------------------------------------------------- ERROR  ----------------------------------------------- : \n", JSON.stringify(error))
             return fail(400, {fail: true})
         }
     }

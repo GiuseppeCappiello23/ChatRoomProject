@@ -7,9 +7,9 @@
 
     let changeTheme = () => {
         let theme = localStorage.getItem("theme")
-        console.log("tema attuale : ", theme)
+        // console.log("tema attuale : ", theme)
         theme = theme === "true" ? "false" : "true";
-        console.log("tema cambiato : ", theme)
+        // console.log("tema cambiato : ", theme)
         localStorage.setItem("theme", theme)
         document.documentElement.setAttribute("data-theme", themeMap[theme])
     }
