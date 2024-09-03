@@ -5,12 +5,12 @@
 <script>
     import NavbarLogged from '$lib/components/NavbarLogged.svelte';
     import ModalAddRoom from '../../lib/components/ModalAddRoom.svelte';
+    // import ModalCreateRoom from '../../lib/components/ModalCreateRoom.svelte';
     import RoomCard from '../../lib/components/RoomCard.svelte';
     
     
     export let data;
     export let form;
-    $: share = ""
 
     function updateList(list, newElements) {
         newElements.forEach(({ id, roomName }) => {
@@ -18,8 +18,8 @@
         })
     }
 
-    console.log(data);
-    $: roomsList = data.user.rooms.items
+    // console.log(data);
+    $: roomsList = data.user.rooms
     
     // updateList(roomsList, )
     // roomsList = roomsList
@@ -34,6 +34,8 @@
         }
     }
 </script>
+
+<!-- <ModalCreateRoom createFunction={createRoom} form={form}/> -->
 
 <ModalAddRoom addFunction={addRoom} form={form}/>
 
@@ -51,7 +53,8 @@
                         />
                     {/each}
                 </div>
-                <div class="p-5 flex justify-center items-center">
+                <div class="p-5 flex justify-center items-center gap-3">
+                    <button class="btn btn-primary" onclick="addRoomModal.showModal()">+ Crea</button>
                     <button class="btn btn-primary" onclick="addRoomModal.showModal()">+ Aggiungi</button>
                 </div>
             </div>

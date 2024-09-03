@@ -13,11 +13,12 @@ export const handle = async ({ event, resolve }) => {
 
     if(event.locals.pb.authStore.isValid) {
         event.locals.user = structuredClone(event.locals.pb.authStore.model)
-        let str = 'createdBy = "' + event.locals.user.id + '"';
-        let rooms = await event.locals.pb.collection('rooms').getList(1, 100, {
-            filter: str
-        })
-        event.locals.user.rooms = rooms
+        if(!event.locals.user.rooms) event.locals.user.rooms = [] 
+        // let str = 'createdBy = "' + event.locals.user.id + '"';
+        // let rooms = await event.locals.pb.collection('rooms').getList(1, 100, {
+        //     filter: str
+        // })
+        // event.locals.user.rooms = rooms
     } else {
         event.locals.user = undefined
     }
